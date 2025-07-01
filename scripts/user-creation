@@ -1,0 +1,7 @@
+<powershell>
+# Create the Brm7Site user
+net user Brm7Site "DevOps2025-" /add
+
+# Add the user to IIS_IUSRS group
+net localgroup IIS_IUSRS Brm7Site /add
+</powershell>

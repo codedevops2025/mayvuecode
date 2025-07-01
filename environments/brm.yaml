@@ -1,0 +1,73 @@
+tags:
+  env: testing
+  project: txdot
+  owner: mayvue
+
+region:
+
+vpc:
+  cidr: "10.110.0.0/16"                 # change to the current vpc 
+  id: "vpc-0bbd06f08e86c9f27"           # vpc id
+
+subnets:
+  - public-nat-2a
+  - public-nat-2b
+  - public-nat-2c
+  - private-db-2a
+  - private-db-2b
+  - private-db-2c
+  - private-fs-2a
+  - private-fs-2b
+  - private-fs-2c
+  - private-apps-2a
+  - private-apps-2b
+  - private-apps-2c
+  - private-ad-2a
+  - private-ad-2b
+  - private-ad-2c
+  - private-tgwy-2a
+  - private-tgwy-2b
+  - private-tgwy-2c
+  - public-lb-2a
+  - public-lb-2b
+  - public-lb-2c
+
+routes:
+  infra_cidr_block : "10.98.0.0/16"              # use the current vpc infra
+  # transit_gateway_id : "tgw-0ff78fdde1db65150"    # use transitgateway id
+
+ec2:
+  aws_region           : "us-east-2"
+  ami_id               : "ami-0835bd9ac415b5c9c"
+  instance_type        : "t2.large"
+  key_name             : "brm-core"                 # use the current private key
+  subnet_name          : "private-apps-2a"
+  security_group_names : ["testing-txdot-www-internal", "testing-txdot-rdp"]   
+  instance_name        : "brm-massdot-dev"           # change to the appropriate name
+  volume_size          : 500
+
+sql_db:
+  db_identifier: "brm-massdot-uat"
+  db_instance_class: "db.m5.xlarge"
+  engine: "sqlserver-se"
+  username: "admin"
+  password: "password"
+  allocated_storage: 1000
+  iops: 3000
+  multi_az: false
+  db_name: "brmdb"
+  publicly_accessible: false
+  # kms_key_id: "arn:aws:kms:us-east-2:950224715834:key/484874fe-dd10-4fb2-a950-ae4fc30fb9a8"
+  option_group_name: "massdot-option-group"
+  parameter_group_name: "default.sqlserver-se-15.0"
+  db_subnet_group_name: "db-massdot"
+  availability_zone: "us-east-2a"
+  backup_retention_period: 7
+  maintenance_window: "wed:08:08-wed:08:38"
+  preferred_backup_window: "07:28-07:58"
+  monitoring_interval: 60
+  # monitoring_role_arn: "arn:aws:iam::950224715834:role/rds-monitoring-role"
+  performance_insights_enabled: true
+  # performance_insights_kms_key_id: "arn:aws:kms:us-east-2:950224715834:key/484874fe-dd10-4fb2-a950-ae4fc30fb9a8"
+  performance_insights_retention_period: 465
+  deletion_protection: true

@@ -1,0 +1,51 @@
+# Run this as Administrator
+
+$ErrorActionPreference = "Stop"
+$installDir = "C:\BrM7Websites"
+$tempDir = "C:\BrM7Setup"
+
+# Create temp and install directories
+New-Item -Path $installDir -ItemType Directory -Force
+New-Item -Path $tempDir -ItemType Directory -Force
+
+# Function to download installers
+Function Download-Installer {
+    param (
+        [string]$Url,
+        [string]$OutputPath
+    )
+    Invoke-WebRequest -Uri $Url -OutFile $OutputPath
+}
+
+# 1. SAP Crystal Reports Runtime
+$crystalUrl = "https://origin-az.softwaredownloads.sap.com/public/file/0020000001649962022"
+$crystalInstaller = "$tempDir\CRRuntime.msi"
+Download-Installer -Url $crystalUrl -OutputPath $crystalInstaller
+Start-Process msiexec.exe -Wait -ArgumentList "/i `"$crystalInstaller`" /qn"
+
+# 2. SQL Server Native Client
+$sqlNativeClientUrl = "https://download.microsoft.com/download/1/2/2/1229BD1E-3DA3-4607-BD26-399AF46A3C8C/sqlncli.msi"
+$sqlInstaller = "$tempDir\sqlncli.msi"
+Download-Installer -Url $sqlNativeClientUrl -OutputPath $sqlInstaller
+Start-Process msiexec.exe -Wait -ArgumentList "/i `"$sqlInstaller`" /qn"
+
+# 3. IIS URL Rewrite
+$urlRewriteUrl = "https://download.microsoft.com/download/D/D/9/DD9E0992-4875-4E3F-B845-B31F60A336E1/rewrite_amd64_en-US.msi"
+$urlRewriteInstaller = "$tempDir\rewrite.msi"
+Download-Installer -Url $urlRewriteUrl -OutputPath $urlRewriteInstaller
+Start-Process msiexec.exe -Wait -ArgumentList "/i `"$urlRewriteInstaller`" /qn"
+
+# 4. ASP.NET Core Hosting Bundle
+$aspNetCoreUrl = "https://download.visualstudio.microsoft.com/download/pr/26f6f74a-f82f-4846-893c-3ed8f6b54b9c/58e9cce3d4fd3ebaeaffd89a71d4d8f5/dotnet-hosting-8.0.10-win.exe"
+$aspNetInstaller = "$tempDir\aspnet-hosting.exe"
+Download-Installer -Url $aspNetCoreUrl -OutputPath $aspNetInstaller
+Start-Process -FilePath $aspNetInstaller -ArgumentList "/install /quiet /norestart" -Wait
+
+# Optional: Restart IIS
+iisreset
+
+# Optional: Create service user (Brm7Site)
+net user Brm7Site DevOps2025- /add
+net localgroup IIS_IUSRS Brm7Site /add
+
+Write-Host "`n✅ All components installed. You may now deploy your application to C:\BrM7Websites."

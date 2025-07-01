@@ -1,0 +1,942 @@
+# aws_security_group.sg-01a497089e489e037:
+resource "aws_security_group" "sg-01a497089e489e037" {
+    arn         = "arn:aws:ec2:us-east-2:444339626490:security-group/sg-01a497089e489e037"
+    description = "Allow remote connections to infrastructure"
+    egress      = []
+    id          = "sg-01a497089e489e037"
+    ingress     = [
+        {
+            cidr_blocks      = [
+                "10.106.0.0/16",
+                "10.98.0.0/16",
+                "0.0.0.0/0",
+            ]
+            description      = null
+            from_port        = 3389
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = []
+            self             = false
+            to_port          = 3389
+        },
+        {
+            cidr_blocks      = [
+                "10.98.0.0/16",
+                "10.106.0.0/16",
+            ]
+            description      = null
+            from_port        = 22
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = []
+            self             = false
+            to_port          = 22
+        },
+    ]
+    name        = "rdp"
+    name_prefix = null
+    owner_id    = "444339626490"
+    tags        = {
+        "Name" = "rdp"
+    }
+    tags_all    = {
+        "Name" = "rdp"
+    }
+    vpc_id      = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_security_group.sg-0578b1f4190ce26e3:
+resource "aws_security_group" "sg-0578b1f4190ce26e3" {
+    arn         = "arn:aws:ec2:us-east-2:444339626490:security-group/sg-0578b1f4190ce26e3"
+    description = "Allows web access to servers"
+    egress      = [
+        {
+            cidr_blocks      = [
+                "0.0.0.0/0",
+            ]
+            description      = null
+            from_port        = 0
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "-1"
+            security_groups  = []
+            self             = false
+            to_port          = 0
+        },
+    ]
+    id          = "sg-0578b1f4190ce26e3"
+    ingress     = [
+        {
+            cidr_blocks      = [
+                "10.106.0.0/16",
+            ]
+            description      = null
+            from_port        = 443
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = []
+            self             = false
+            to_port          = 443
+        },
+        {
+            cidr_blocks      = [
+                "10.106.0.0/16",
+            ]
+            description      = null
+            from_port        = 80
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = []
+            self             = false
+            to_port          = 80
+        },
+    ]
+    name        = "www-internal"
+    name_prefix = null
+    owner_id    = "444339626490"
+    tags        = {
+        "Name" = "www-internal"
+    }
+    tags_all    = {
+        "Name" = "www-internal"
+    }
+    vpc_id      = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_security_group.sg-0a559a3516652b694:
+resource "aws_security_group" "sg-0a559a3516652b694" {
+    arn         = "arn:aws:ec2:us-east-2:444339626490:security-group/sg-0a559a3516652b694"
+    description = "Allos DB access to SQL"
+    egress      = [
+        {
+            cidr_blocks      = [
+                "10.98.0.0/16",
+                "10.106.0.0/16",
+            ]
+            description      = null
+            from_port        = 0
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "-1"
+            security_groups  = []
+            self             = false
+            to_port          = 0
+        },
+    ]
+    id          = "sg-0a559a3516652b694"
+    ingress     = [
+        {
+            cidr_blocks      = [
+                "10.98.0.0/16",
+                "10.106.0.0/16",
+            ]
+            description      = null
+            from_port        = 1433
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = []
+            self             = false
+            to_port          = 1433
+        },
+    ]
+    name        = "db-sql"
+    name_prefix = null
+    owner_id    = "444339626490"
+    tags        = {
+        "Name" = "db-sql"
+    }
+    tags_all    = {
+        "Name" = "db-sql"
+    }
+    vpc_id      = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_security_group.sg-0c513faee137f0e49:
+resource "aws_security_group" "sg-0c513faee137f0e49" {
+    arn         = "arn:aws:ec2:us-east-2:444339626490:security-group/sg-0c513faee137f0e49"
+    description = "FSX Access"
+    egress      = [
+        {
+            cidr_blocks      = [
+                "10.106.0.0/16",
+            ]
+            description      = null
+            from_port        = 0
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "-1"
+            security_groups  = []
+            self             = false
+            to_port          = 0
+        },
+    ]
+    id          = "sg-0c513faee137f0e49"
+    ingress     = [
+        {
+            cidr_blocks      = [
+                "10.106.0.0/16",
+            ]
+            description      = null
+            from_port        = 445
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = []
+            self             = false
+            to_port          = 445
+        },
+    ]
+    name        = "fsx"
+    name_prefix = null
+    owner_id    = "444339626490"
+    tags        = {
+        "Name" = "fsx"
+    }
+    tags_all    = {
+        "Name" = "fsx"
+    }
+    vpc_id      = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_security_group.sg-0d5a2bb816429895b:
+resource "aws_security_group" "sg-0d5a2bb816429895b" {
+    arn         = "arn:aws:ec2:us-east-2:444339626490:security-group/sg-0d5a2bb816429895b"
+    description = "Allos DB access to ORACLE"
+    egress      = [
+        {
+            cidr_blocks      = [
+                "10.106.0.0/16",
+                "10.98.0.0/16",
+            ]
+            description      = null
+            from_port        = 0
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "-1"
+            security_groups  = []
+            self             = false
+            to_port          = 0
+        },
+    ]
+    id          = "sg-0d5a2bb816429895b"
+    ingress     = [
+        {
+            cidr_blocks      = [
+                "10.98.0.0/16",
+                "10.106.0.0/16",
+            ]
+            description      = null
+            from_port        = 1521
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = []
+            self             = false
+            to_port          = 1521
+        },
+    ]
+    name        = "db-orcl"
+    name_prefix = null
+    owner_id    = "444339626490"
+    tags        = {
+        "Name" = "db-orcl"
+    }
+    tags_all    = {
+        "Name" = "db-orcl"
+    }
+    vpc_id      = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_security_group.sg-0fdb775ff017d764b:
+resource "aws_security_group" "sg-0fdb775ff017d764b" {
+    arn         = "arn:aws:ec2:us-east-2:444339626490:security-group/sg-0fdb775ff017d764b"
+    description = "Allow web servers from the internet"
+    egress      = [
+        {
+            cidr_blocks      = [
+                "0.0.0.0/0",
+            ]
+            description      = null
+            from_port        = 0
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "-1"
+            security_groups  = []
+            self             = false
+            to_port          = 0
+        },
+    ]
+    id          = "sg-0fdb775ff017d764b"
+    ingress     = [
+        {
+            cidr_blocks      = [
+                "0.0.0.0/0",
+            ]
+            description      = null
+            from_port        = 443
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = []
+            self             = false
+            to_port          = 443
+        },
+        {
+            cidr_blocks      = [
+                "0.0.0.0/0",
+            ]
+            description      = null
+            from_port        = 80
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = []
+            self             = false
+            to_port          = 80
+        },
+    ]
+    name        = "www"
+    name_prefix = null
+    owner_id    = "444339626490"
+    tags        = {
+        "Name" = "www"
+    }
+    tags_all    = {
+        "Name" = "www"
+    }
+    vpc_id      = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-011cb41849ed7d712:
+resource "aws_subnet" "subnet-011cb41849ed7d712" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-011cb41849ed7d712"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2b"
+    availability_zone_id                           = "use2-az2"
+    cidr_block                                     = "10.106.2.16/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-011cb41849ed7d712"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-db-2b"
+    }
+    tags_all                                       = {
+        "Name" = "private-db-2b"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-0406ae58ddf35b538:
+resource "aws_subnet" "subnet-0406ae58ddf35b538" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-0406ae58ddf35b538"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2b"
+    availability_zone_id                           = "use2-az2"
+    cidr_block                                     = "10.106.2.64/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0406ae58ddf35b538"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-ad-2b"
+    }
+    tags_all                                       = {
+        "Name" = "private-ad-2b"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-04d2e8237cc00fb8e:
+resource "aws_subnet" "subnet-04d2e8237cc00fb8e" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-04d2e8237cc00fb8e"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2c"
+    availability_zone_id                           = "use2-az3"
+    cidr_block                                     = "10.106.4.128/26"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-04d2e8237cc00fb8e"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-apps-2c"
+    }
+    tags_all                                       = {
+        "Name" = "private-apps-2c"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-05ec42551fb2546e6:
+resource "aws_subnet" "subnet-05ec42551fb2546e6" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-05ec42551fb2546e6"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2b"
+    availability_zone_id                           = "use2-az2"
+    cidr_block                                     = "10.106.2.112/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-05ec42551fb2546e6"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-fs-2b"
+    }
+    tags_all                                       = {
+        "Name" = "private-fs-2b"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-06b95eaa4965f7536:
+resource "aws_subnet" "subnet-06b95eaa4965f7536" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-06b95eaa4965f7536"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2c"
+    availability_zone_id                           = "use2-az3"
+    cidr_block                                     = "10.106.0.64/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-06b95eaa4965f7536"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "public-nat-2c"
+    }
+    tags_all                                       = {
+        "Name" = "public-nat-2c"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-071b5388526d50c50:
+resource "aws_subnet" "subnet-071b5388526d50c50" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-071b5388526d50c50"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2a"
+    availability_zone_id                           = "use2-az1"
+    cidr_block                                     = "10.106.255.208/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-071b5388526d50c50"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-tgwy-2a"
+    }
+    tags_all                                       = {
+        "Name" = "private-tgwy-2a"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-07cb9fa8212fafc74:
+resource "aws_subnet" "subnet-07cb9fa8212fafc74" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-07cb9fa8212fafc74"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2b"
+    availability_zone_id                           = "use2-az2"
+    cidr_block                                     = "10.106.255.224/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-07cb9fa8212fafc74"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-tgwy-2b"
+    }
+    tags_all                                       = {
+        "Name" = "private-tgwy-2b"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-09171bcade2a01ccf:
+resource "aws_subnet" "subnet-09171bcade2a01ccf" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-09171bcade2a01ccf"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2a"
+    availability_zone_id                           = "use2-az1"
+    cidr_block                                     = "10.106.3.0/26"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-09171bcade2a01ccf"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "public-lb-2a"
+    }
+    tags_all                                       = {
+        "Name" = "public-lb-2a"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-0a4155b07b7bf2d00:
+resource "aws_subnet" "subnet-0a4155b07b7bf2d00" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-0a4155b07b7bf2d00"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2a"
+    availability_zone_id                           = "use2-az1"
+    cidr_block                                     = "10.106.2.0/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0a4155b07b7bf2d00"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-db-2a"
+    }
+    tags_all                                       = {
+        "Name" = "private-db-2a"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-0a793f2a7c97994d7:
+resource "aws_subnet" "subnet-0a793f2a7c97994d7" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-0a793f2a7c97994d7"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2b"
+    availability_zone_id                           = "use2-az2"
+    cidr_block                                     = "10.106.3.64/26"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0a793f2a7c97994d7"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "public-lb-2b"
+    }
+    tags_all                                       = {
+        "Name" = "public-lb-2b"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-0b05898e42357f678:
+resource "aws_subnet" "subnet-0b05898e42357f678" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-0b05898e42357f678"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2a"
+    availability_zone_id                           = "use2-az1"
+    cidr_block                                     = "10.106.4.0/26"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0b05898e42357f678"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-apps-2a"
+    }
+    tags_all                                       = {
+        "Name" = "private-apps-2a"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-0bb098e3e1fba0687:
+resource "aws_subnet" "subnet-0bb098e3e1fba0687" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-0bb098e3e1fba0687"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2b"
+    availability_zone_id                           = "use2-az2"
+    cidr_block                                     = "10.106.0.48/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0bb098e3e1fba0687"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "public-nat-2b"
+    }
+    tags_all                                       = {
+        "Name" = "public-nat-2b"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-0bfee77d0937fd775:
+resource "aws_subnet" "subnet-0bfee77d0937fd775" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-0bfee77d0937fd775"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2c"
+    availability_zone_id                           = "use2-az3"
+    cidr_block                                     = "10.106.2.80/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0bfee77d0937fd775"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-ad-2c"
+    }
+    tags_all                                       = {
+        "Name" = "private-ad-2c"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-0c24b17cd5d46f1ff:
+resource "aws_subnet" "subnet-0c24b17cd5d46f1ff" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-0c24b17cd5d46f1ff"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2c"
+    availability_zone_id                           = "use2-az3"
+    cidr_block                                     = "10.106.3.128/26"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0c24b17cd5d46f1ff"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "public-lb-2c"
+    }
+    tags_all                                       = {
+        "Name" = "public-lb-2c"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-0c7b192d670f9d0cb:
+resource "aws_subnet" "subnet-0c7b192d670f9d0cb" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-0c7b192d670f9d0cb"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2a"
+    availability_zone_id                           = "use2-az1"
+    cidr_block                                     = "10.106.2.48/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0c7b192d670f9d0cb"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-ad-2a"
+    }
+    tags_all                                       = {
+        "Name" = "private-ad-2a"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-0cf870f1095c649e3:
+resource "aws_subnet" "subnet-0cf870f1095c649e3" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-0cf870f1095c649e3"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2c"
+    availability_zone_id                           = "use2-az3"
+    cidr_block                                     = "10.106.255.240/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0cf870f1095c649e3"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-tgwy-2c"
+    }
+    tags_all                                       = {
+        "Name" = "private-tgwy-2c"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-0df1186bbfe26e33b:
+resource "aws_subnet" "subnet-0df1186bbfe26e33b" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-0df1186bbfe26e33b"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2a"
+    availability_zone_id                           = "use2-az1"
+    cidr_block                                     = "10.106.0.32/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0df1186bbfe26e33b"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "public-nat-2a"
+    }
+    tags_all                                       = {
+        "Name" = "public-nat-2a"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-0eaea7bb8be5084d8:
+resource "aws_subnet" "subnet-0eaea7bb8be5084d8" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-0eaea7bb8be5084d8"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2c"
+    availability_zone_id                           = "use2-az3"
+    cidr_block                                     = "10.106.2.32/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0eaea7bb8be5084d8"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-db-2c"
+    }
+    tags_all                                       = {
+        "Name" = "private-db-2c"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-0f06732ddea81ced6:
+resource "aws_subnet" "subnet-0f06732ddea81ced6" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-0f06732ddea81ced6"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2b"
+    availability_zone_id                           = "use2-az2"
+    cidr_block                                     = "10.106.4.64/26"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0f06732ddea81ced6"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-apps-2b"
+    }
+    tags_all                                       = {
+        "Name" = "private-apps-2b"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_subnet.subnet-0f16036679a6e77fa:
+resource "aws_subnet" "subnet-0f16036679a6e77fa" {
+    arn                                            = "arn:aws:ec2:us-east-2:444339626490:subnet/subnet-0f16036679a6e77fa"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-2c"
+    availability_zone_id                           = "use2-az3"
+    cidr_block                                     = "10.106.2.128/28"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0f16036679a6e77fa"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "444339626490"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Name" = "private-fs-2c"
+    }
+    tags_all                                       = {
+        "Name" = "private-fs-2c"
+    }
+    vpc_id                                         = "vpc-0be4bfc8ad924beaa"
+}
+
+# aws_vpc.imported_vpc:
+resource "aws_vpc" "imported_vpc" {
+    arn                                  = "arn:aws:ec2:us-east-2:444339626490:vpc/vpc-0be4bfc8ad924beaa"
+    assign_generated_ipv6_cidr_block     = false
+    cidr_block                           = "10.106.0.0/16"
+    default_network_acl_id               = "acl-05b0854dd40de2897"
+    default_route_table_id               = "rtb-032be9a9674dd211c"
+    default_security_group_id            = "sg-08bf2e6f26bce0bf6"
+    dhcp_options_id                      = "dopt-034c35361407bb11a"
+    enable_dns_hostnames                 = false
+    enable_dns_support                   = true
+    enable_network_address_usage_metrics = false
+    id                                   = "vpc-0be4bfc8ad924beaa"
+    instance_tenancy                     = "default"
+    ipv6_association_id                  = null
+    ipv6_cidr_block                      = null
+    ipv6_cidr_block_network_border_group = null
+    ipv6_ipam_pool_id                    = null
+    ipv6_netmask_length                  = 0
+    main_route_table_id                  = "rtb-032be9a9674dd211c"
+    owner_id                             = "444339626490"
+    tags                                 = {
+        "Name" = "njdot"
+    }
+    tags_all                             = {
+        "Name" = "njdot"
+    }
+}
