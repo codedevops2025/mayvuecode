@@ -30,3 +30,5 @@ terraform.tfvars.json
 .idea/
 *.swp
 .DS_Store
+
+.terraform.lock.hcl

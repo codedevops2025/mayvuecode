@@ -1,13 +1,13 @@
 tags:
-  env: testing
-  project: txdot
+  env: brm-uat
+  project: odot
   owner: mayvue
 
 region:
 
 vpc:
-  cidr: "10.110.0.0/16"                 # change to the current vpc 
-  id: "vpc-0bbd06f08e86c9f27"           # vpc id
+  cidr: "10.79.0.0/22"                 # #########################################
+  id: "vpc-07c9f84265e6c1c5c"           # ########################################
 
 subnets:
   - public-nat-2a
@@ -40,14 +40,14 @@ ec2:
   aws_region           : "us-east-2"
   ami_id               : "ami-0835bd9ac415b5c9c"
   instance_type        : "t2.large"
-  key_name             : "brm-core"                 # use the current private key
-  subnet_name          : "private-apps-2a"
-  security_group_names : ["testing-txdot-www-internal", "testing-txdot-rdp"]   
-  instance_name        : "brm-massdot-dev"           # change to the appropriate name
+  key_name             : "odot-key"                 # use the current private key
+  subnet_name          : "private-tgwy-2a"
+  security_group_names : ["www-internal", "rdp"]   
+  # instance_name        : "brm-odot-uat"           # change to the appropriate name
   volume_size          : 500
 
 sql_db:
-  db_identifier: "brm-massdot-uat"
+  db_identifier: "brm-odot-uat"
   db_instance_class: "db.m5.xlarge"
   engine: "sqlserver-se"
   username: "admin"
@@ -58,10 +58,10 @@ sql_db:
   db_name: "brmdb"
   publicly_accessible: false
   # kms_key_id: "arn:aws:kms:us-east-2:950224715834:key/484874fe-dd10-4fb2-a950-ae4fc30fb9a8"
-  option_group_name: "massdot-option-group"
+  # option_group_name: "odot-option-group"
   parameter_group_name: "default.sqlserver-se-15.0"
-  db_subnet_group_name: "db-massdot"
-  availability_zone: "us-east-2a"
+  # db_subnet_group_name: "db-vpn"
+  availability_zone: "us-east-2b"
   backup_retention_period: 7
   maintenance_window: "wed:08:08-wed:08:38"
   preferred_backup_window: "07:28-07:58"
@@ -71,3 +71,22 @@ sql_db:
   # performance_insights_kms_key_id: "arn:aws:kms:us-east-2:950224715834:key/484874fe-dd10-4fb2-a950-ae4fc30fb9a8"
   performance_insights_retention_period: 465
   deletion_protection: true
+  create_monitoring_role: false
+  create_subnet_group: false
+  db_subnet_group_name: "db-vpn"
+  create_option_group: false
+  option_group_name: "db-restore-sql"
+  option_group:
+      name                  : "db-restore-sql"
+      engine_name           : "sqlserver-se"
+      major_engine_version  : "15.00"
+      options: 
+        - option_name : "SQLSERVER_BACKUP_RESTORE"
+          port: 1433
+          vpc_security_group_memberships:
+            - "sg-0c225d7a98afcd8d6"
+      tags:
+        env: brm-uat
+        project: odot
+        owner: mayvue
+ 

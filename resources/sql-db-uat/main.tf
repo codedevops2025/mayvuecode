@@ -4,5 +4,11 @@ locals {
 
 module "sql" {
   source = "../../modules/sql-db"
-  sql_db = local.config.sql_db
+
+  alpha = {
+    sql_db = local.config.sql_db
+    tags   = local.config.tags
+
+    option_group = local.config.sql_db.option_group # <-- Add this line if it's nested under sql_db
+  }
 }

@@ -69,3 +69,37 @@ resource "aws_instance" "brm_alpha" {
     Name = "${var.config.tags.env}-${var.config.tags.project}-instance"
   })
 }
+
+
+
+
+# resource "aws_lb_target_group" "https_target_group" {
+#   name = "${var.config.tags.env}-${var.config.tags.project}-tg"
+#   port     = 443
+#   protocol = "HTTPS"
+#   vpc_id   = var.config.vpc.id
+
+#   target_type = "instance"
+
+#   health_check {
+#     protocol = "HTTPS"
+#     port     = "443"
+#     path     = "/"
+#     matcher  = "200"
+#     interval = 30
+#     timeout  = 5
+#     healthy_threshold   = 3
+#     unhealthy_threshold = 2
+#   }
+
+#   tags = merge(var.config.tags, {
+#     Name = "${var.config.tags.env}-${var.config.tags.project}-tg"
+#   })
+# }
+
+# resource "aws_lb_target_group_attachment" "https_instance_attachment" {
+#   target_group_arn = aws_lb_target_group.https_target_group.arn
+#   target_id        = aws_instance.brm_alpha.id
+#   port             = 443
+# }
+

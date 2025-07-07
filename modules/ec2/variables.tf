@@ -7,7 +7,7 @@ variable "config" {
       key_name             = string
       subnet_name          = string
       security_group_names = list(string)
-      instance_name        = string
+      # instance_name        = string
       volume_size          = string
     })
     vpc = object({
