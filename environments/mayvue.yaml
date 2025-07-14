@@ -1,0 +1,13 @@
+tags:
+  owner: "Mayvue Solutions"
+  team: "DevOps"
+  environment: "dev"
+  project: "brmapp"
+  create_by: "Terraform"
+  cloud_provider: "aws"
+  confidentiality: "internal"
+
+s3:
+  aws_region_main: "us-east-2"
+  aws_region_backup: "us-west-2"
+  force_destroy: false

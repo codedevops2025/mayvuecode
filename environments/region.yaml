@@ -1,0 +1,4 @@
+ dev: us-east-2
+ alias:
+   aws_region_main: us-east-2
+   aws_region_backup: us-west-2
